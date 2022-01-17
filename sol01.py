@@ -1,32 +1,26 @@
 # -*- coding: utf-8 -*-
 
-#프로그래머스_힙_이중우선순위큐
+#프로그래머스_정렬_가장큰수
 
-operations = ["I 7","I 5","I -5","D -1"]
-#operations = ["I 16","D 1"]
+#numbers = [0, 0, 0]
+#numbers = [989, 98]
+numbers = [3, 34, 32]
+#numbers = [3, 30, 34, 5, 9, 999]
 
-def solution(operations):
-    que = []
+def solution(numbers):
+    answer = ''
     
-    for ele in operations:
-        if ele[0] == 'I': #원소 삽입
-            num = int(ele[2:])
-            que.append(num)
-        elif ele[0] == 'D': #원소 삭제
-            if ele[2] == '1' and len(que) > 0: #최대값 삭제
-                max_idx = que.index(max(que))
-                que.pop(max_idx)
-            elif ele[2] == '-' and len(que) > 0: #최소값 삭제
-                min_idx = que.index(min(que))
-                que.pop(min_idx)
-                
-    if len(que) == 0:
-        answer = [0,0]
-    elif len(que) > 1: #min, max를 쓸 땐 해당 리스트에 대한 길이를 확인해줘야함
-        min_num = min(que)
-        max_num = max(que)
-        answer = [max_num, min_num]
+    #numbers의 요소들을 문자열로 변경
+    numbers = list(map(str, numbers))
     
-    return answer
+    #sort(reverse)로 내림차순 정렬
+    #x*3의 이유는 numbers의 원소가 0 이상 1000이하이기에
+    numbers.sort(key = lambda x: x*1, reverse = True)
+    #66 22 1010
+    
+    print(numbers)
+    
+    #[0,0]의 경우 00이 나오기에 int로 변경 후 다시 str로
+    return str(int(''.join(numbers)))
 
-solution(operations)
+solution(numbers)
