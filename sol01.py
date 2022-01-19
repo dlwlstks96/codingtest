@@ -1,36 +1,28 @@
 # -*- coding: utf-8 -*-
 
-#프로그래머스_완전탐색_소수찾기
+#프로그래머스_완전탐색_카펫
 
-numbers = "12345"
+brown = 50
+yellow = 22
 
-import itertools as it
-
-def solution(numbers):
-    answer = 0
+def solution(brown, yellow):
+    answer = []
     
-    tmpNumList = [] #조합된 숫자들을 담기 위함(중복 확인)
+    #전체 타일의 갯수는 brown + yellow여야 한다.
+    tmp = brown + yellow
     
-    #1개부터 numbers의 총 갯수만큼 뽑아 조합
-    #itertools 라이브러리 이용
-    for i in range(1, len(numbers)+1):
-        it_list = it.permutations(numbers, i)
+    for i in range(1, tmp+1):
+        if tmp % i == 0: #전체 타일 갯수의 약수
+            x = i #가로 타일 갯수
+            y = int(tmp/i) #세로 타일 갯수
+            #brown이 두께 1로 yellow를 감싸고 있기에
+            #가로-2*세로*2의 크기가 전체 yellow여야 한다.
+            if (x-2)*(y-2) == yellow and x >= y:
+                answer.append(x)
+                answer.append(y)
+    
+    #print(answer)
         
-        for j in it_list:
-            tmpNum = ''
-            for k in j:
-                tmpNum += k #리스트의 요소들을 문자열로 합침
-                
-            tmpNum = int(tmpNum) #str을 int로 바꿔줌
-            
-            if tmpNum not in tmpNumList: #소수 확인 과정이 중복된 숫자인지 확인
-                for k in range(1, tmpNum): #1부터 숫자-1까지 다 나눠본다
-                    if tmpNum % k == 0 and k != 1: #1이 아닌 숫자로 나누어 떨어지는지 확인
-                        break 
-                    elif k == tmpNum - 1: #1이 아닌 숫자로 나누어 떨어지지 않을 경우
-                        answer += 1
-                tmpNumList.append(tmpNum)
-    
     return answer
 
-solution(numbers)
+solution(brown, yellow)
