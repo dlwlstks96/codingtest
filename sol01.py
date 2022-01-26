@@ -1,28 +1,33 @@
 # -*- coding: utf-8 -*-
 
-#프로그래머스_완전탐색_카펫
+id_list = ["muzi", "frodo", "apeach", "neo"]
+report = ["muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"]
+k = 2
 
-brown = 50
-yellow = 22
 
-def solution(brown, yellow):
-    answer = []
+def solution(id_list, report, k):
+    answer = [0 for i in range(len(id_list))]
     
-    #전체 타일의 갯수는 brown + yellow여야 한다.
-    tmp = brown + yellow
+    report_num_list = {}
     
-    for i in range(1, tmp+1):
-        if tmp % i == 0: #전체 타일 갯수의 약수
-            x = i #가로 타일 갯수
-            y = int(tmp/i) #세로 타일 갯수
-            #brown이 두께 1로 yellow를 감싸고 있기에
-            #가로-2*세로*2의 크기가 전체 yellow여야 한다.
-            if (x-2)*(y-2) == yellow and x >= y:
-                answer.append(x)
-                answer.append(y)
+    for i in id_list:
+        report_num_list[i] = []
     
-    #print(answer)
+    for i in report:
+        tmp = i.split(' ')
+        report_num_list[tmp[1]].append(tmp[0])
         
+    for i in report_num_list.keys():
+        report_num_list[i] = set(report_num_list[i])
+        report_num_list[i] = list(report_num_list[i])
+       
+    
+    for i in id_list:
+        if len(report_num_list[i]) >= k:
+            for j in report_num_list[i]:
+                idx = id_list.index(j)
+                answer[idx] += 1
+
     return answer
 
-solution(brown, yellow)
+solution(id_list, report, k)
