@@ -30,6 +30,7 @@ def solution(n, k):
             continue
         #print(math.sqrt(int(i)))
         for j in range(2, int(math.sqrt(int(i)))+1): #2부터 중앙값(제곱근)까지 체크
+            
             if int(i) % j == 0:
                 answer -= 1 #나중에 무조건 +1 해주기에 소수면 -1하고 반복 중지
                 break
