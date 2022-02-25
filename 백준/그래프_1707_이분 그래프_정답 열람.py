@@ -3,7 +3,7 @@
 ### bfs
 import collections
 import sys
-sys.setrecursionlimit(10 ** 6)
+#sys.setrecursionlimit(10 ** 6)
 #input = sys.stdin.readline
 
 for _ in range(int(input())):
