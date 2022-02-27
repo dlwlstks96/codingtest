@@ -2,19 +2,19 @@
 
 from itertools import combinations
 
-N = 5
-M = 3
-board = [
-    [0, 2, 0, 1, 0],
-    [1, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0],
-    [2, 0, 0, 1, 1],
-    [2, 2, 0, 1, 2]
-        ]
+# N = 5
+# M = 3
+# board = [
+#     [0, 2, 0, 1, 0],
+#     [1, 0, 1, 0, 0],
+#     [0, 0, 0, 0, 0],
+#     [2, 0, 0, 1, 1],
+#     [2, 2, 0, 1, 2]
+#         ]
  
 ## 맵크기(N), 치킨집 최대 선택가능개수(M)
-#N, M = map(int, input().split())
-#board = [list(map(int, input().split())) for _ in range(N)]
+N, M = map(int, input().split())
+board = [list(map(int, input().split())) for _ in range(N)]
  
 ## 빈칸(0), 집(1), 치킨집(2)
 house = []
@@ -37,7 +37,7 @@ for ch in combinations(chicken, M):
         #print('ssssssssssssss')
         if minv <= sumv: break
     if sumv < minv: minv = sumv
-    print('============')
+    #print('============')
  
 print(minv)
 
