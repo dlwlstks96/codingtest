@@ -17,8 +17,6 @@ class Solution(object):
         for _ in range(len(new_nums)):
             new_nums.rotate()
             if list(new_nums) == nums:
-                print(new_nums, nums)
-                print('True')
                 return True
             
         return False
